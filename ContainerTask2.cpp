@@ -1,10 +1,6 @@
 ﻿#include <iostream>
 #include <cmath>
 
-
-using namespace std;
-
-
 class Polygon {
 protected:
     int* xCoords = new int[100];
@@ -13,12 +9,12 @@ protected:
 
 public:
     Polygon() {
-        cin >> size;
+        std::cin >> size;
         for (int i = 0; i < size; i++) {
-            cin >> xCoords[i];
+            std::cin >> xCoords[i];
         }
         for (int i = 0; i < size; i++) {
-            cin >> yCoords[i];
+            std::cin >> yCoords[i];
         }
     }
 
@@ -30,7 +26,7 @@ public:
         }
 
         area += ((xCoords[size - 1] - xCoords[0]) * (yCoords[size - 1] + yCoords[0])) / 2.0;
-        area = abs(area);
+        area = std::abs(area);
         return area;
     }
 
@@ -38,28 +34,28 @@ public:
         double perimeter = 0;
 
         for (int i = 0; i < size - 1; i++) {
-            perimeter += sqrt(pow((xCoords[i + 1] - xCoords[i]), 2) + pow((yCoords[i + 1] - yCoords[i]), 2));
+            perimeter += std::sqrt(std::pow((xCoords[i + 1] - xCoords[i]), 2) + std::pow((yCoords[i + 1] - yCoords[i]), 2));
         }
 
-        perimeter += sqrt(pow((xCoords[size - 1] - xCoords[0]), 2) + pow((yCoords[size - 1] - yCoords[0]), 2));
+        perimeter += std::sqrt(std::pow((xCoords[size - 1] - xCoords[0]), 2) + std::pow((yCoords[size - 1] - yCoords[0]), 2));
 
         return perimeter;
     }
 
     void display() {
-        cout << "abscissa ";
+        std::cout << "abscissa ";
 
         for (int i = 0; i < size; i++) {
-            cout << xCoords[i] << " ";
+            std::cout << xCoords[i] << " ";
         }
 
-        cout << "ordinata ";
+        std::cout << "ordinata ";
 
         for (int i = 0; i < size; i++) {
-            cout << yCoords[i] << " ";
+            std::cout << yCoords[i] << " ";
         }
 
-        cout << " Perimetr= " << calculatePerimeter() << " Ploshad= " << calculateArea() << endl;
+        std::cout << " Perimetr= " << calculatePerimeter() << " Ploshad= " << calculateArea() << std::endl;
     }
 
     friend bool doPolygonsIntersect(Polygon poly1, Polygon poly2) {
@@ -74,7 +70,7 @@ public:
                 if (poly1.xCoords[i] > poly2.xCoords[j]){ right1 = true; }
 
                 if (poly1.yCoords[i] > poly2.yCoords[j]){ top1 = true; }
- 
+
                 if (poly1.yCoords[i] < poly2.yCoords[j]){ bottom1 = true; }
             }
 
@@ -114,19 +110,19 @@ int main() {
     Polygon poly1;
     Polygon poly2;
 
-    cout << "Poligon1= ";
+    std::cout << "Poligon1= ";
 
     poly1.display();
 
-    cout << "Poligon2= ";
+    std::cout << "Poligon2= ";
 
     poly2.display();
 
     bool intersect = doPolygonsIntersect(poly1, poly2);
     if (intersect) {
-        cout << "Poligon1 peresekaet Poligon2" << endl;
+        std::cout << "Poligon1 peresekaet Poligon2" << std::endl;
     } else {
-        cout << "Poligon1 ne peresekaet Poligon2" << endl;
+        std::cout << "Poligon1 ne peresekaet Poligon2" << std::endl;
     }
 
     return 0;
